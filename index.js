@@ -17,11 +17,15 @@ const width = 300;
 /* IMPORT DATA */
 /* ----------- */
 
-/* ------------- */
-/* DRAW FUNCTION */
-/* ------------- */
+/* ---------------- */
+/* HELPER FUNCTIONS */
+/* ---------------- */
 
-function draw() {
+/* --------------- */
+/* RENDER FUNCTION */
+/* --------------- */
+
+function render() {
   // add a svg element
   const svg = d3
     .select("#svg-container")
@@ -41,10 +45,3 @@ function draw() {
   // add a title
   svg.append("text").attr("class", "title").attr("y", 24).html("Plot title");
 }
-
-// call the draw function and enjoy
-draw();
-
-/* ---------------- */
-/* HELPER FUNCTIONS */
-/* ---------------- */
