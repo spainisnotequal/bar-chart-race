@@ -5,7 +5,6 @@ import * as d3 from "https://unpkg.com/d3?module";
 /* --------- */
 const init = async () => {
   const data = await getDataFromCsv("category-brands.csv");
-  console.log(data.slice(0, 5));
   //render(data);
   render();
 };
@@ -16,14 +15,24 @@ init();
 /* VARIABLES AND CONFIGURATION */
 /* --------------------------- */
 
+// change data each 250 miliseconds
+const duration = 250;
+
+// only use the top 12 companies
+const n = 12;
+
+// interpolation constant to animate rank changes more quickly, improving readability
+const k = 10;
+
 const margin = {
-  top: 80,
+  top: 10,
   right: 5,
   bottom: 5,
   left: 5,
 };
-const height = 300;
-const width = 300;
+const barSize = 48;
+const height = margin.top + barSize * n + margin.bottom;
+let width = 0; // we will update this value depending on the values of the brands
 
 /* ----------- */
 /* IMPORT DATA */
