@@ -1,5 +1,17 @@
 import * as d3 from "https://unpkg.com/d3?module";
 
+/* --------- */
+/* INTERFACE */
+/* --------- */
+const init = async () => {
+  const data = await getDataFromCsv("category-brands.csv");
+  console.log(data.slice(0, 5));
+  //render(data);
+  render();
+};
+
+init();
+
 /* --------------------------- */
 /* VARIABLES AND CONFIGURATION */
 /* --------------------------- */
@@ -16,6 +28,14 @@ const width = 300;
 /* ----------- */
 /* IMPORT DATA */
 /* ----------- */
+
+function getDataFromCsv(url) {
+  return new Promise((resolve, reject) => {
+    d3.csv(url, d3.autoType)
+      .then((data) => resolve(data))
+      .catch((error) => reject(error));
+  });
+}
 
 /* ---------------- */
 /* HELPER FUNCTIONS */
